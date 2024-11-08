@@ -6,7 +6,7 @@ import React from "react";
 
 
 const Login = () => {
-  const clickSignIn = () => signIn('google');
+  const clickSignIn = () => signIn();
   return (
     <div className="max-w-screen-md h-screen mx-auto flex justify-center items-center">
       <div className="grid justify-center items-center">
