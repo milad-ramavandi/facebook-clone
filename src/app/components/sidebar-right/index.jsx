@@ -4,7 +4,8 @@ import SearchIcon from "../search-icon";
 import EllipsisHorizontal from "../ellipsis-horizontal";
 import { useQuery } from "react-query";
 import Contact from "../contact";
-import SkeletonContact from "../skeleton-contact";
+import SkeletonContactBotton from "../skeleton-contact-bottom";
+import SkeletioContactTop from "../skeleton-contact-top";
 
 const SidebarRight = () => {
   const { data, isLoading } = useQuery({
@@ -13,7 +14,16 @@ const SidebarRight = () => {
       await fetch("http://localhost:8000/contacts").then((res) => res.json()),
   });
   if (isLoading) {
-    return <SkeletonContact/>
+    return (
+      <div className={"hidden lg:flex lg:flex-grow lg:flex-col lg:space-y-3 lg:mt-8 lg:p-2"}>
+        <SkeletioContactTop />
+        <div className={'space-y-6'}>
+          {[...Array(7)].map((_, index) => (
+            <SkeletonContactBotton key={index} />
+          ))}
+        </div>
+      </div>
+    );
   }
   return (
     <div className={"hidden lg:flex lg:flex-grow lg:flex-col lg:p-2"}>
@@ -25,9 +35,11 @@ const SidebarRight = () => {
           <EllipsisHorizontal />
         </div>
       </div>
-      {data?.map((item) => (
-        <Contact key={item.id} {...item} />
-      ))}
+      <div className={"space-y-2"}>
+        {data?.map((item) => (
+          <Contact key={item.id} {...item} />
+        ))}
+      </div>
     </div>
   );
 };

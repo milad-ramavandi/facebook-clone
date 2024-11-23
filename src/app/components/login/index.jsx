@@ -18,7 +18,7 @@ const Login = () => {
             className="object-cover"
           />
         </div>
-        <Button inputMode="submit" radius="full" onClick={clickSignIn}>
+        <Button radius="full" onClick={clickSignIn}>
           Login with Google
         </Button>
       </div>

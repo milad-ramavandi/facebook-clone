@@ -5,7 +5,7 @@ const SkeletonPost = () => {
   return (
     <div
       className={
-        "flex flex-col bg-white p-5 mt-5 shadow-md rounded-t-2xl space-y-4"
+        "flex flex-col bg-white p-5 shadow-md rounded-t-2xl space-y-4"
       }
     >
       <div className={"flex justify-between items-center"}>

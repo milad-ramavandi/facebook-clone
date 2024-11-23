@@ -6,12 +6,13 @@ import LikeIcon from "../like-icon";
 import CommentIcon from "../comment-icon";
 import ShareIcon from "../share-icon";
 import EllipsisVertical from "../ellipsis-vertical";
+import TimeAgo from "react-timeago";
 
 const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
   return (
     <div
       className={
-        "flex flex-col bg-white p-5 mt-5 shadow-md rounded-t-2xl space-y-4"
+        "flex flex-col bg-white p-5 shadow-md rounded-t-2xl space-y-4"
       }
     >
       <div className={"flex justify-between items-center"}>
@@ -19,7 +20,9 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
           <Profile className={"w-12 h-12"} />
           <div>
             <p className={"font-medium"}>{author}</p>
-            <p className={"text-xs text-gray-400"}>{timestamp}</p>
+            <p className={"text-xs text-gray-400"}>
+              <TimeAgo date={timestamp}/>
+            </p>
           </div>
         </div>
         <EllipsisVertical id={id} />
@@ -30,7 +33,7 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
           <Image
             src={uploadFile}
             fill
-            className={"object-cover"}
+            className={"object-contain"}
             alt={author}
           />
         </div>

@@ -4,13 +4,13 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React from "react";
 
-const Profile = ({ showTitle, className, onClick }) => {
+const Profile = ({ showTitle, className }) => {
   const session = useSession();
   return (
     <>
       {session?.data?.user?.image && session?.data?.user?.name ? (
         <div className={"flex items-center space-x-2"}>
-          <div className={`relative ${className}`} onClick={onClick}>
+          <div className={`relative ${className}`}>
             <Image
               fill
               src={session?.data?.user?.image}

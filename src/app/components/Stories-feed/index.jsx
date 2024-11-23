@@ -10,15 +10,19 @@ const StoriesFeed = () => {
     queryFn: async () =>
       await fetch("http://localhost:8000/stories").then((res) => res.json()),
   });
+  if (isLoading) {
+    return (
+      <div className="flex justify-center space-x-3">
+        {[...Array(5)].map((_,index) =>  <SkeletonStoriesFeed key={index}/>)}
+      </div>
+    )
+  }
   return (
-    <>
     <div className="flex justify-center space-x-3">
       {data?.map((item, index) => (
         <StoryCard key={index} {...item} />
       ))}
     </div>
-    {isLoading && <SkeletonStoriesFeed/>}
-    </>
   );
 };
 
