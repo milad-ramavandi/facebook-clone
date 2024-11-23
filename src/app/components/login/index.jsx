@@ -1,25 +1,32 @@
-'use client'
+"use client";
 import { Button } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
-import Image from "next/image";
 import React from "react";
-
+import ArrowRightIn from "../arrow-right-in";
 
 const Login = () => {
   const clickSignIn = () => signIn();
   return (
-    <div className="max-w-screen-md h-screen mx-auto flex justify-center items-center">
-      <div className="grid justify-center items-center">
-        <div className="w-[400px] h-[400px] relative">
-          <Image
-            src="https://yt3.googleusercontent.com/viNp17XpEF-AwWwOZSj_TvgobO1CGmUUgcTtQoAG40YaYctYMoUqaRup0rTxxxfQvWw3MvhXesw=s900-c-k-c0x00ffffff-no-rj"
-            fill
-            alt="google"
-            className="object-cover"
-          />
-        </div>
-        <Button radius="full" onClick={clickSignIn}>
-          Login with Google
+    <div
+      className={
+        "max-w-screen-sm min-h-screen mx-auto flex justify-center items-center"
+      }
+    >
+      <div
+        className={
+          "w-1/2 mx-auto bg-gray-100 shadow-lg p-2 rounded-sm flex flex-col text-center space-y-3"
+        }
+      >
+        <p className={"font-bold text-lg"}>Welcome to Linkedin Clone</p>
+
+        <Button
+          radius="full"
+          variant={"ghost"}
+          onClick={clickSignIn}
+          className={"w-3/4 mx-auto"}
+          endContent={<ArrowRightIn />}
+        >
+          Continue
         </Button>
       </div>
     </div>
