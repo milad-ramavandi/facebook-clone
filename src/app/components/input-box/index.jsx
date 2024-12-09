@@ -34,7 +34,7 @@ const InputBox = () => {
     mutationKey: ["add-post"],
     mutationFn: () => {
       const promise = async () => {
-        await fetch("http://localhost:8000/posts", {
+        await fetch("http://localhost:9000/posts", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

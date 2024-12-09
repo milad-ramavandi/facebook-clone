@@ -17,7 +17,7 @@ const EllipsisVertical = ({ id }) => {
     mutationKey: ["delete-post", id],
     mutationFn: () => {
       const promise = async () => {
-        await fetch(`http://localhost:8000/posts/${id}`, {
+        await fetch(`http://localhost:9000/posts/${id}`, {
           method: "DELETE",
         });
       };

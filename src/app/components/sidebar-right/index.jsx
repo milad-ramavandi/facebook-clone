@@ -11,7 +11,7 @@ const SidebarRight = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["contacts"],
     queryFn: async () =>
-      await fetch("http://localhost:8000/contacts").then((res) => res.json()),
+      await fetch(`${process.env.NEXT_URL}contacts`).then((res) => res.json()),
   });
   if (isLoading) {
     return (

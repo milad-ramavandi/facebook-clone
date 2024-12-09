@@ -9,7 +9,7 @@ const HeaderLeft = () => {
     <div className="flex items-center gap-2">
       <div className="relative w-10 h-10 flex justify-center items-center">
         <Image
-          src="https://links.papareact.com/5me"
+          src="/images/facebook-logo.webp"
           fill
           alt="facebook"
           className="object-cover"
@@ -21,7 +21,7 @@ const HeaderLeft = () => {
           inputMode="text"
           size="sm"
           startContent={<SearchIcon className={'size-6 text-gray-600'}/>}
-          placeholder="Search Facebook"
+          placeholder="Search Facebook..."
         />
       </div>
     </div>

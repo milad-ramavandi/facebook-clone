@@ -6,9 +6,9 @@ import SkeletonStoriesFeed from "../skeleton-stories-feed";
 
 const StoriesFeed = () => {
   const { data, isLoading } = useQuery({
-    queryKey: ["stories feed"],
+    queryKey: ["stories-feed"],
     queryFn: async () =>
-      await fetch("http://localhost:8000/stories").then((res) => res.json()),
+      await fetch(`${process.env.NEXT_URL}stories`).then((res) => res.json()),
   });
   if (isLoading) {
     return (
@@ -18,7 +18,7 @@ const StoriesFeed = () => {
     )
   }
   return (
-    <div className="flex justify-center space-x-3">
+    <div className="flex justify-center space-x-3 ">
       {data?.map((item, index) => (
         <StoryCard key={index} {...item} />
       ))}

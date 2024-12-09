@@ -38,6 +38,9 @@ const nextConfig = {
                 pathname:'/**'
             }
         ]
+    },
+    env:{
+        NEXT_URL:process.env.NEXT_URL
     }
 };
 

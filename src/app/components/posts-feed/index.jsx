@@ -6,7 +6,7 @@ import SkeletonPost from "../skeleton-post";
 const PostsFeed = () => {
   const { data, isLoading } = useQuery({
     queryKey: ["posts"],
-    queryFn: async () => await fetch("http://localhost:8000/posts").then((res) => res.json())  
+    queryFn: async () => await fetch(`${process.env.NEXT_URL}posts`).then((res) => res.json())  
   });
   if (isLoading) {
     return (
