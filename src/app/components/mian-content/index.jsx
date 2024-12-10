@@ -1,4 +1,3 @@
-'use client'
 import React from "react";
 import Feed from "../feed";
 import SidebarLeft from "../sidebar-left";

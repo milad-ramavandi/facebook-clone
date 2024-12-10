@@ -6,32 +6,41 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import React from "react";
-import { useMutation, useQueryClient } from "react-query";
+// import { useMutation, useQueryClient } from "react-query";
 import DeleteIcon from "../delete-icon";
 import EditIcon from "../edit-icon";
+import { deletePostAction } from "@/actions";
 import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const EllipsisVertical = ({ id }) => {
-  const queryClient = useQueryClient();
-  const { mutate } = useMutation({
-    mutationKey: ["delete-post", id],
-    mutationFn: () => {
-      const promise = async () => {
-        await fetch(`http://localhost:9000/posts/${id}`, {
-          method: "DELETE",
-        });
-      };
-      return toast.promise(promise, {
-        pending: "Delete post is pending...",
-        success: "Delete post successfully",
-        error: "Failed to delete post",
-      });
-    },
+  // const queryClient = useQueryClient();
+  // const { mutate } = useMutation({
+  //   mutationKey: ["delete-post", id],
+  //   mutationFn: () => {
+  //     const promise = async () => {
+  //       await fetch(`http://localhost:9000/posts/${id}`, {
+  //         method: "DELETE",
+  //       });
+  //     };
+  //     return toast.promise(promise, {
+  //       pending: "Delete post is pending...",
+  //       success: "Delete post successfully",
+  //       error: "Failed to delete post",
+  //     });
+  //   },
 
-    onSuccess: () => queryClient.invalidateQueries(["posts"]),
-  });
+  //   onSuccess: () => queryClient.invalidateQueries(["posts"]),
+  // });
   const clickHandlerDelete = () => {
-    mutate();
+    const promise = async () => {
+      await deletePostAction(id);
+    };
+    toast.promise(promise, {
+      pending: "Delete post is pending...",
+      success: "Delete post successfully",
+      error: "Failed to delete post",
+    });
   };
   return (
     <Dropdown>

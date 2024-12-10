@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import StoriesFeed from "../Stories-feed";
 import InputBox from "../input-box";

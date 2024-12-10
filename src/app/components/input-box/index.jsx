@@ -17,9 +17,10 @@ import Profile from "../profile";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import EmojiPicker from "emoji-picker-react";
-import { useMutation, useQueryClient } from "react-query";
+import { addPostAction } from "@/actions";
 import { toast } from "react-toastify";
-
+// import { useMutation, useQueryClient } from "react-query";
+// import { toast } from "react-toastify";
 
 const InputBox = () => {
   const session = useSession();
@@ -28,42 +29,56 @@ const InputBox = () => {
   const [file, setFile] = useState(null);
   const [emoji, setEmoji] = useState("");
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  const queryClieny = useQueryClient();
+  // const queryClieny = useQueryClient();
 
-  const { mutate } = useMutation({
-    mutationKey: ["add-post"],
-    mutationFn: () => {
-      const promise = async () => {
-        await fetch("http://localhost:9000/posts", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            message: text,
-            author: session?.data?.user?.name,
-            email: session?.data?.user?.email,
-            image: session?.data?.user?.image,
-            uploadFile: file,
-            timestamp: new Date(),
-          }),
-        });
-      };
-      return toast.promise(promise, {
-        pending: "Add post is pending...",
-        success: "Add post successfully",
-        error: "Failed to add post",
-      });
-    },
-    onSuccess: () => queryClieny.invalidateQueries(["posts"]),
-  });
+  // const { mutate } = useMutation({
+  //   mutationKey: ["add-post"],
+  //   mutationFn: () => {
+  //     const promise = async () => {
+  //       await fetch("http://localhost:9000/posts", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           message: text,
+  //           author: session?.data?.user?.name,
+  //           email: session?.data?.user?.email,
+  //           image: session?.data?.user?.image,
+  //           uploadFile: file,
+  //           timestamp: new Date(),
+  //         }),
+  //       });
+  //     };
+  //     return toast.promise(promise, {
+  //       pending: "Add post is pending...",
+  //       success: "Add post successfully",
+  //       error: "Failed to add post",
+  //     });
+  //   },
+  //   onSuccess: () => queryClieny.invalidateQueries(["posts"]),
+  // });
 
   const clickSendPost = (e) => {
     e.preventDefault();
     if (!text) {
       return;
     }
-    mutate();
+    const promise = async () => {
+      await addPostAction({
+        message: text,
+        author: session?.data?.user?.name,
+        email: session?.data?.user?.email,
+        image: session?.data?.user?.image,
+        uploadFile: file,
+        timestamp: new Date(),
+      });
+    };
+    toast.promise(promise, {
+      pending: "Add post is pending...",
+      success: "Add post successfully",
+      error: "Failed to add post",
+    });
     setText("");
     setFile(null);
   };
