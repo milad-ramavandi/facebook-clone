@@ -12,17 +12,17 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
   return (
     <div
       className={
-        "flex flex-col bg-white p-5 shadow-md rounded-t-2xl space-y-4"
+        "flex flex-col bg-white p-2 sm:p-5 shadow-md rounded-t-2xl space-y-4"
       }
     >
       <div className={"flex justify-between items-center"}>
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-grow items-center space-x-2">
           <Profile className={"w-12 h-12"} />
           <div>
-            <p className={"font-medium"}>{author}</p>
-            <div className={"text-xs text-gray-400"}>
+            <p className={"font-medium truncate"}>{author}</p>
+            <p className={"text-xs text-gray-400"}>
               <TimeAgo date={timestamp}/>
-            </div>
+            </p>
           </div>
         </div>
         <EllipsisVertical id={id} />
@@ -40,7 +40,7 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
       )}
       <div
         className={
-          "flex justify-between items-center text-gray-400 border-t pt-1"
+          "grid sm:grid-cols-3 text-gray-400 border-t pt-1"
         }
       >
         <div className={"inputIcon"}>

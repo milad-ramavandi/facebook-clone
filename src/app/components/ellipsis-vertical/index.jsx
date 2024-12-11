@@ -11,7 +11,7 @@ import DeleteIcon from "../delete-icon";
 import EditIcon from "../edit-icon";
 import { deletePostAction } from "@/actions";
 import { toast } from "react-toastify";
-import { revalidatePath } from "next/cache";
+
 // import { toast } from "react-toastify";
 
 const EllipsisVertical = ({ id }) => {
@@ -42,7 +42,6 @@ const EllipsisVertical = ({ id }) => {
       success: "Delete post successfully",
       error: "Failed to delete post",
     });
-    revalidatePath("/")
   };
   return (
     <Dropdown>

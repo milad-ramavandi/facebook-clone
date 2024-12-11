@@ -16,10 +16,12 @@ const icons = [
 
 const HeaderCenter = () => {
   return (
-    <div className="flex flex-grow justify-center space-x-6 md:space-x-2">
+    <div className="fixed bottom-2 left-0 w-full sm:relative sm:bottom-0 sm:justify-center sm:space-x-6 md:space-x-2">
+      <div className="flex justify-between lg:justify-center w-[90%] mx-auto backdrop-blur-3xl rounded-xl px-2 py-4 sm:w-full sm:p-0">
       {icons.map((item, index) => (
         <HeaderIcon key={index} {...item}/>
       ))}
+      </div>
     </div>
   );
 };

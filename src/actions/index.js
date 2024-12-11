@@ -1,5 +1,7 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+
 export const getStoriesFeedAction = async () => {
   try {
     const res = await fetch(`${process.env.DATABASE_URL}stories`);
@@ -39,6 +41,7 @@ export const addPostAction = async (post) => {
       },
       body: JSON.stringify(post),
     });
+    revalidatePath("/")
   } catch (error) {
     console.log(`Server error: `, error);
   }
@@ -49,6 +52,7 @@ export const deletePostAction = async (id) => {
     await fetch(`${process.env.DATABASE_URL}posts/${id}`, {
       method: "DELETE",
     });
+    revalidatePath("/")
   } catch (error) {
     console.log(`Server error: `, error);
   }

@@ -5,7 +5,7 @@ import HeaderRight from "../header-right";
 
 const Header = () => {
   return (
-    <header className="flex items-center space-x-6 p-2 shadow-md sticky top-0 z-50 bg-white overflow-auto scrollbar-hide">
+    <header className="flex justify-between items-center sm:space-x-6 p-2 shadow-md sticky top-0 z-50 bg-white">
       <HeaderLeft />
       <HeaderCenter/>
       <HeaderRight/>

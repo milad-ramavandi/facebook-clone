@@ -28,37 +28,8 @@ const InputBox = () => {
   const [text, setText] = useState("");
   const inputFile = useRef(null);
   const [file, setFile] = useState(null);
-  const [emoji, setEmoji] = useState("");
-  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
-  // const queryClieny = useQueryClient();
-
-  // const { mutate } = useMutation({
-  //   mutationKey: ["add-post"],
-  //   mutationFn: () => {
-  //     const promise = async () => {
-  //       await fetch("http://localhost:9000/posts", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({
-  //           message: text,
-  //           author: session?.data?.user?.name,
-  //           email: session?.data?.user?.email,
-  //           image: session?.data?.user?.image,
-  //           uploadFile: file,
-  //           timestamp: new Date(),
-  //         }),
-  //       });
-  //     };
-  //     return toast.promise(promise, {
-  //       pending: "Add post is pending...",
-  //       success: "Add post successfully",
-  //       error: "Failed to add post",
-  //     });
-  //   },
-  //   onSuccess: () => queryClieny.invalidateQueries(["posts"]),
-  // });
+  // const [emoji, setEmoji] = useState("");
+  const [openBoxEmoji, setOpenBoxEmoji] = useState(false);
 
   const clickSendPost = (e) => {
     e.preventDefault();
@@ -80,7 +51,7 @@ const InputBox = () => {
       success: "Add post successfully",
       error: "Failed to add post",
     });
-    revalidatePath("/")
+
     setText("");
     setFile(null);
   };
@@ -94,23 +65,23 @@ const InputBox = () => {
       setFile(readerEvent.target.result);
     };
   };
-  const clickShowHandleEmoji = () => onOpen();
+  const clickShowHandleEmoji = () => setOpenBoxEmoji((prev) => !prev);
   const clickHandleEmoji = (e) => {
-    setEmoji((prev) => `${prev}${e.emoji}`);
+    setText((prev) => `${prev}${e.emoji}`);
   };
 
-  const clickAddEmojiToText = () => {
-    if (emoji) {
-      setText((prev) => `${prev}${emoji}`);
-      onClose();
-      setEmoji("");
-    }
-  };
+  // const clickAddEmojiToText = () => {
+  //   if (emoji) {
+  //     setText((prev) => `${prev}${emoji}`);
+  //     onClose();
+  //     setEmoji("");
+  //   }
+  // };
 
   return (
-    <div className="bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium space-y-4">
-      <div className="flex items-center space-x-4 p-4">
-        <Profile className={"w-12 h-12"} />
+    <div className="relative bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium space-y-2 sm:space-y-4">
+      <div className="flex items-center space-x-2 sm:space-x-4 p-1 sm:p-4">
+        <Profile className={"w-7 h-7"} />
         <form className={"flex-grow"}>
           <Input
             value={text}
@@ -136,7 +107,7 @@ const InputBox = () => {
           />
         </div>
       )}
-      <div className="flex justify-around p-3 border-t-2">
+      <div className="grid sm:grid-cols-3 border-t-2">
         <div className="inputIcon">
           <VideoIcon className="size-6 text-red-500" />
           <p className="text-xs sm:text-sm lg:text-base">Live Video</p>
@@ -156,32 +127,17 @@ const InputBox = () => {
           <p className="text-xs sm:text-sm lg:text-base">Feeling/Activity</p>
         </div>
       </div>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent>
-          <ModalHeader>Emojies</ModalHeader>
-          <ModalBody>
-            <EmojiPicker
-              style={{
-                width: "100%",
-              }}
-              onEmojiClick={clickHandleEmoji}
-            />
-
-            <Input
-              type="text"
-              value={emoji}
-              onValueChange={setEmoji}
-              label={"Select your emoji"}
-            />
-          </ModalBody>
-
-          <ModalFooter>
-            <Button type={"button"} onClick={clickAddEmojiToText}>
-              Apply
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <div className={"absolute w-full top-full right-0 z-50"}>
+        <EmojiPicker
+          open={openBoxEmoji}
+          style={{
+            width: "100%",
+            height: "300px",
+          }}
+          onEmojiClick={clickHandleEmoji}
+          searchDisabled
+        />
+      </div>
     </div>
   );
 };
