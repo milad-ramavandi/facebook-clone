@@ -20,9 +20,9 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
           <Profile className={"w-12 h-12"} />
           <div>
             <p className={"font-medium"}>{author}</p>
-            <p className={"text-xs text-gray-400"}>
+            <div className={"text-xs text-gray-400"}>
               <TimeAgo date={timestamp}/>
-            </p>
+            </div>
           </div>
         </div>
         <EllipsisVertical id={id} />

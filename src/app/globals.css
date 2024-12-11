@@ -3,10 +3,28 @@
 @tailwind utilities;
 
 @layer components {
-    .icon {
-        @apply hidden xl:inline-flex p-2 w-10 h-10 bg-gray-200 text-gray-700 rounded-full cursor-pointer hover:bg-gray-300
-    }
-    .inputIcon{
-        @apply flex flex-grow justify-center items-center space-x-1 p-2 hover:bg-gray-100 rounded-xl cursor-pointer
-    }
+  .icon {
+    @apply hidden xl:inline-flex p-2 w-10 h-10 bg-gray-200 text-gray-700 rounded-full cursor-pointer hover:bg-gray-300;
+  }
+  .inputIcon {
+    @apply flex flex-grow justify-center items-center space-x-1 p-2 hover:bg-gray-100 rounded-xl cursor-pointer;
+  }
+  .lds-ellipsis {
+    @apply text-[#1c4c5b] inline-block relative w-20 h-20 ;
+  }
+  .lds-ellipsis div {
+    @apply absolute top-[33.33333px] w-6 h-6 rounded-full bg-current;
+  }
+  .lds-ellipsis div:nth-child(1) {
+    @apply left-[8px] animate-ldsEllipsis1;
+  }
+  .lds-ellipsis div:nth-child(2) {
+    @apply left-[8px] animate-ldsEllipsis2;
+  }
+  .lds-ellipsis div:nth-child(3) {
+    @apply left-[32px] animate-ldsEllipsis3;
+  }
+  .lds-ellipsis div:nth-child(4) {
+    @apply left-[56px] animate-ldsEllipsis3;
+  }
 }

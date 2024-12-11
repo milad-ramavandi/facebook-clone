@@ -19,6 +19,7 @@ import Image from "next/image";
 import EmojiPicker from "emoji-picker-react";
 import { addPostAction } from "@/actions";
 import { toast } from "react-toastify";
+import { revalidatePath } from "next/cache";
 // import { useMutation, useQueryClient } from "react-query";
 // import { toast } from "react-toastify";
 
@@ -79,6 +80,7 @@ const InputBox = () => {
       success: "Add post successfully",
       error: "Failed to add post",
     });
+    revalidatePath("/")
     setText("");
     setFile(null);
   };

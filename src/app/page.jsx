@@ -1,7 +1,7 @@
 import Header from "./components/header";
 import MainContent from "./components/mian-content";
 
-const Home = () => {
+const Home = async () => {
   return (
     <div className="h-screen bg-gray-100 overflow-hidden">
       <Header />
@@ -9,6 +9,7 @@ const Home = () => {
     </div>
   );
 };
+
 
 export default Home;
 
