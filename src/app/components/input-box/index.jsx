@@ -83,17 +83,19 @@ const InputBox = () => {
       <div className="flex items-center space-x-2 sm:space-x-4 p-1 sm:p-4">
         <Profile className={"w-7 h-7"} />
         <form className={"flex-grow"}>
-          <Input
-            value={text}
-            onValueChange={setText}
-            type="text"
-            size="md"
-            placeholder="What's on your mind?"
-            autoComplete="off"
-          />
-          <Button type="submit" className={"hidden"} onClick={clickSendPost}>
-            Send
-          </Button>
+          <div className="flex space-x-1">
+            <Input
+              value={text}
+              onValueChange={setText}
+              type="text"
+              size="md"
+              placeholder="What's on your mind?"
+              autoComplete="off"
+            />
+            <Button type="submit" color={'primary'} variant={'ghost'} onClick={clickSendPost}>
+              Post
+            </Button>
+          </div>
         </form>
       </div>
 

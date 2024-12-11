@@ -14,10 +14,10 @@ const Login = () => {
     >
       <div
         className={
-          "w-1/2 mx-auto bg-gray-100 shadow-lg p-2 rounded-sm flex flex-col text-center space-y-3"
+          "w-3/4 sm:w-1/2 mx-auto bg-gray-100 shadow-lg p-2 rounded-sm flex flex-col text-center space-y-3"
         }
       >
-        <p className={"font-bold text-lg"}>Welcome to Facebook Clone</p>
+        <p className={"font-bold text-lg truncate"}>Welcome to Facebook Clone</p>
 
         <Button
           radius="full"
