@@ -1,14 +1,5 @@
 "use client";
-import {
-  Button,
-  Input,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from "@nextui-org/react";
+import { Button, Input } from "@nextui-org/react";
 import React, { useRef, useState } from "react";
 import VideoIcon from "../video-icon";
 import CameraIcon from "../camera-icon";
@@ -19,16 +10,12 @@ import Image from "next/image";
 import EmojiPicker from "emoji-picker-react";
 import { addPostAction } from "@/actions";
 import { toast } from "react-toastify";
-import { revalidatePath } from "next/cache";
-// import { useMutation, useQueryClient } from "react-query";
-// import { toast } from "react-toastify";
 
 const InputBox = () => {
   const session = useSession();
   const [text, setText] = useState("");
   const inputFile = useRef(null);
   const [file, setFile] = useState(null);
-  // const [emoji, setEmoji] = useState("");
   const [openBoxEmoji, setOpenBoxEmoji] = useState(false);
 
   const clickSendPost = (e) => {
@@ -70,20 +57,12 @@ const InputBox = () => {
     setText((prev) => `${prev}${e.emoji}`);
   };
 
-  // const clickAddEmojiToText = () => {
-  //   if (emoji) {
-  //     setText((prev) => `${prev}${emoji}`);
-  //     onClose();
-  //     setEmoji("");
-  //   }
-  // };
-
   return (
     <div className="relative bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium space-y-2 sm:space-y-4">
-      <div className="flex items-center space-x-2 sm:space-x-4 p-1 sm:p-4">
-        <Profile className={"w-7 h-7"} />
+      <div className="flex items-center space-x-2 sm:space-x-4 sm:p-4">
+        <Profile className={"hidden sm:block"} />
         <form className={"flex-grow"}>
-          <div className="flex space-x-1">
+          <div className="space-y-1 sm:flex sm:space-x-1 sm:space-y-0">
             <Input
               value={text}
               onValueChange={setText}
@@ -92,9 +71,17 @@ const InputBox = () => {
               placeholder="What's on your mind?"
               autoComplete="off"
             />
-            <Button type="submit" color={'primary'} variant={'ghost'} onClick={clickSendPost}>
-              Post
-            </Button>
+            <div className="w-1/2 mx-auto sm:w-auto">
+              <Button
+                type="submit"
+                color={"primary"}
+                variant={"ghost"}
+                onClick={clickSendPost}
+                fullWidth
+              >
+                Post
+              </Button>
+            </div>
           </div>
         </form>
       </div>

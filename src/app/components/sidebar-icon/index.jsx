@@ -8,7 +8,7 @@ const SidebarIcon = ({ Icon, title }) => {
     signOut()
   }
   return (
-    <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl cursor-pointer" onClick={clickSignOut}>
+    <div className="flex items-center justify-center sm:justify-start space-x-2 p-4 hover:bg-gray-200 rounded-xl cursor-pointer" onClick={clickSignOut}>
       <Icon className="w-7 h-7 text-blue-500" />
       <p className="hidden sm:inline-flex font-medium">{title}</p>
     </div>

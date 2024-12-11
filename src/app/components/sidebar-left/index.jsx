@@ -24,7 +24,7 @@ const SidebarLeft = () => {
   return (
     <div className="mt-5 pl-2 lg:min-w-[300px]">
       <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl">
-        <Profile showTitle className={"w-7 h-7"} />
+        <Profile showTitle size={'sm'} />
       </div>
       {titles.map((item, index) => (
         <SidebarIcon key={index} {...item} />

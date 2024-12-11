@@ -14,7 +14,7 @@ const Login = () => {
     >
       <div
         className={
-          "w-3/4 sm:w-1/2 mx-auto bg-gray-100 shadow-lg p-2 rounded-sm flex flex-col text-center space-y-3"
+          "w-[95%] sm:w-1/2 mx-auto bg-gray-100 shadow-lg p-2 rounded-sm flex flex-col text-center space-y-3"
         }
       >
         <p className={"font-bold text-lg truncate"}>Welcome to Facebook Clone</p>
@@ -23,7 +23,7 @@ const Login = () => {
           radius="full"
           variant={"ghost"}
           onClick={clickSignIn}
-          className={"w-3/4 mx-auto"}
+          className={"w-1/2 mx-auto"}
           endContent={<ArrowRightIn />}
         >
           Continue

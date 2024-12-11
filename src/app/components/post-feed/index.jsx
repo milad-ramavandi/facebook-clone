@@ -17,7 +17,7 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
     >
       <div className={"flex justify-between items-center"}>
         <div className="flex flex-grow items-center space-x-2">
-          <Profile className={"w-12 h-12"} />
+          <Profile size={'sm'} />
           <div>
             <p className={"font-medium truncate"}>{author}</p>
             <p className={"text-xs text-gray-400"}>
