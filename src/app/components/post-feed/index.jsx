@@ -21,7 +21,7 @@ const PostFeed = ({ id, author,image, uploadFile, timestamp, message }) => {
           <div>
             <p className={"font-medium truncate"}>{author}</p>
             <p className={"text-xs text-gray-400"}>
-              <TimeAgo date={timestamp}/>
+              <TimeAgo date={timestamp} suppressHydrationWarning/>
             </p>
           </div>
         </div>

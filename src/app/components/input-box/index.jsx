@@ -25,6 +25,7 @@ const InputBox = () => {
     }
     const promise = async () => {
       await addPostAction({
+        id:crypto.randomUUID(),
         message: text,
         author: session?.data?.user?.name,
         email: session?.data?.user?.email,
@@ -38,7 +39,6 @@ const InputBox = () => {
       success: "Add post successfully",
       error: "Failed to add post",
     });
-
     setText("");
     setFile(null);
   };
@@ -96,7 +96,7 @@ const InputBox = () => {
           />
         </div>
       )}
-      <div className="grid sm:grid-cols-3 border-t-2">
+      <div className="grid sm:grid-cols-3 border-t-2 pt-2">
         <div className="inputIcon">
           <VideoIcon className="size-6 text-red-500" />
           <p className="text-xs sm:text-sm lg:text-base">Live Video</p>
