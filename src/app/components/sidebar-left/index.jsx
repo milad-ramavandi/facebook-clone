@@ -22,8 +22,8 @@ const titles = [
 ];
 const SidebarLeft = () => {
   return (
-    <div className="mt-5 pl-2 lg:min-w-[300px]">
-      <div className="flex items-center space-x-2 p-4 hover:bg-gray-200 rounded-xl">
+    <div className="pl-2 pb-44 min-w-[65px] lg:min-w-[300px] h-screen overflow-auto scrollbar-hide">
+      <div className="flex items-center justify-center lg:justify-start space-x-2 p-4 hover:bg-gray-200 rounded-xl">
         <Profile showTitle size={'sm'} />
       </div>
       {titles.map((item, index) => (

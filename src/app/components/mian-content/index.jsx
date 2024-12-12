@@ -5,7 +5,7 @@ import SidebarRight from "../sidebar-right";
 
 const MainContent = () => {
   return (
-    <main className="flex space-x-2">
+    <main className="flex space-x-2 pt-6">
       <SidebarLeft />
       <Feed />
       <SidebarRight />

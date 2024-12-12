@@ -1,14 +1,14 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import Profile from "../profile";
 import LikeIcon from "../like-icon";
 import CommentIcon from "../comment-icon";
 import ShareIcon from "../share-icon";
 import EllipsisVertical from "../ellipsis-vertical";
 import TimeAgo from "react-timeago";
+import { Avatar } from "@nextui-org/react";
 
-const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
+const PostFeed = ({ id, author,image, uploadFile, timestamp, message }) => {
   return (
     <div
       className={
@@ -17,7 +17,7 @@ const PostFeed = ({ id, author, uploadFile, timestamp, message }) => {
     >
       <div className={"flex justify-between items-center"}>
         <div className="flex flex-grow items-center space-x-2">
-          <Profile size={'sm'} />
+          <Avatar src={image} size={'sm'} showFallback/>
           <div>
             <p className={"font-medium truncate"}>{author}</p>
             <p className={"text-xs text-gray-400"}>

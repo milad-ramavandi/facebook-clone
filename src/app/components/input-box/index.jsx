@@ -62,7 +62,7 @@ const InputBox = () => {
       <div className="flex items-center space-x-2 sm:space-x-4 sm:p-4">
         <Profile className={"hidden sm:block"} />
         <form className={"flex-grow"}>
-          <div className="space-y-1 sm:flex sm:space-x-1 sm:space-y-0">
+          <div className="space-y-2 sm:flex sm:space-x-1 sm:space-y-0">
             <Input
               value={text}
               onValueChange={setText}
