@@ -25,7 +25,7 @@ const PostFeed = ({ id, author,image, uploadFile, timestamp, message }) => {
             </p>
           </div>
         </div>
-        <EllipsisVertical id={id} />
+        <EllipsisVertical id={id} author={author}/>
       </div>
       <p>{message}</p>
       {uploadFile && (

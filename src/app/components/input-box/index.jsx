@@ -8,37 +8,69 @@ import Profile from "../profile";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import EmojiPicker from "emoji-picker-react";
-import { addPostAction } from "@/actions";
+// import { addPostAction } from "@/actions";
 import { toast } from "react-toastify";
+import { useMutation, useQueryClient } from "react-query";
 
 const InputBox = () => {
-  const session = useSession();
   const [text, setText] = useState("");
   const inputFile = useRef(null);
   const [file, setFile] = useState(null);
   const [openBoxEmoji, setOpenBoxEmoji] = useState(false);
+  const session = useSession();
+  const queryClient = useQueryClient();
+  const {mutate} = useMutation({
+    mutationKey:["add-post"],
+    mutationFn: () => {
+      const promise = async () => {
+        await fetch(`${process.env.DATABASE_URL}posts`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id:crypto.randomUUID(),
+            message: text,
+            author: session?.data?.user?.name,
+            email: session?.data?.user?.email,
+            image: session?.data?.user?.image,
+            uploadFile: file,
+            timestamp: new Date(),
+          }),
+        });
+      }
+      return toast.promise(promise, {
+        pending: "Add post is pending...",
+        success: "Add post successfully",
+        error: "Failed to add post",
+      })
+    },
+    onSuccess: () => queryClient.invalidateQueries(['posts'])
+  })
 
   const clickSendPost = (e) => {
     e.preventDefault();
     if (!text) {
+      toast.error('Post input should not be empty')
       return;
     }
-    const promise = async () => {
-      await addPostAction({
-        id:crypto.randomUUID(),
-        message: text,
-        author: session?.data?.user?.name,
-        email: session?.data?.user?.email,
-        image: session?.data?.user?.image,
-        uploadFile: file,
-        timestamp: new Date(),
-      });
-    };
-    toast.promise(promise, {
-      pending: "Add post is pending...",
-      success: "Add post successfully",
-      error: "Failed to add post",
-    });
+    // const promise = async () => {
+    //   await addPostAction({
+    //     id:crypto.randomUUID(),
+    //     message: text,
+    //     author: session?.data?.user?.name,
+    //     email: session?.data?.user?.email,
+    //     image: session?.data?.user?.image,
+    //     uploadFile: file,
+    //     timestamp: new Date(),
+    //   });
+    // };
+    // toast.promise(promise, {
+    //   pending: "Add post is pending...",
+    //   success: "Add post successfully",
+    //   error: "Failed to add post",
+    // });
+    mutate()
     setText("");
     setFile(null);
   };
