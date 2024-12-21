@@ -8,7 +8,7 @@ const SkeletonPosts = () => {
         <div
           key={index}
           className={
-            "flex flex-col bg-white p-5 shadow-md rounded-t-2xl space-y-4"
+            "flex flex-col bg-default-200 p-5 shadow-md rounded-t-2xl space-y-4"
           }
         >
           <div className={"flex justify-between items-center"}>
@@ -22,7 +22,7 @@ const SkeletonPosts = () => {
               </div>
             </div>
             <div>
-              <Skeleton className="w-5 h-8 rounded-lg" />
+              <Skeleton className="w-2 h-6 rounded-lg" />
             </div>
           </div>
           <div>

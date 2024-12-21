@@ -6,7 +6,7 @@ import SkeletonPosts from "../skeleton-posts";
 
 const PostsFeed = () => {
   // const data = await getPostsFeedAction();
-  const {data, isLoading} = useQuery({
+  const {data, isLoading, isError, error} = useQuery({
     queryKey:["posts"],
     queryFn: async () => await fetch(`${process.env.DATABASE_URL}posts`).then((res) =>
       res.json()
@@ -14,6 +14,9 @@ const PostsFeed = () => {
   })
   if (isLoading) {
     return <SkeletonPosts/>
+  }
+  if (isError) {
+    throw new Error(error.message)
   }
   return (
     <div className={"space-y-5"}>

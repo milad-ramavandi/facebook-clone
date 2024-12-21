@@ -10,7 +10,9 @@ import { HiChevronDown } from "react-icons/hi";
 import { PiSignOut } from "react-icons/pi";
 import SidebarIcon from "../sidebar-icon";
 import Profile from "../profile";
+import PlusIcon from "../icons/plus-icon";
 const titles = [
+  { Icon: PlusIcon, title: "Upload" },
   { Icon: FaUserFriends, title: "Friends" },
   { Icon: HiUserGroup, title: "Groups" },
   { Icon: HiOutlineShoppingBag, title: "Marketplace" },
@@ -22,10 +24,8 @@ const titles = [
 ];
 const SidebarLeft = () => {
   return (
-    <div className="pl-2 pb-44 min-w-[65px] lg:min-w-[300px] h-screen overflow-auto scrollbar-hide">
-      <div className="flex items-center justify-center lg:justify-start space-x-2 p-4 hover:bg-gray-200 rounded-xl">
-        <Profile showTitle size={'sm'} />
-      </div>
+    <div className="pl-2 pb-44 min-w-[65px] lg:min-w-[300px] h-screen overflow-auto scrollbar-hide mt-6">
+      <Profile showTitle size={"sm"} isStory className={"p-4"}/>
       {titles.map((item, index) => (
         <SidebarIcon key={index} {...item} />
       ))}

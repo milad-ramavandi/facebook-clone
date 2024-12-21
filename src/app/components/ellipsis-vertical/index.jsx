@@ -6,9 +6,9 @@ import {
   DropdownTrigger,
 } from "@nextui-org/react";
 import React from "react";
-import DeleteIcon from "../delete-icon";
-import EditIcon from "../edit-icon";
-import { deletePostAction } from "@/actions";
+import DeleteIcon from "../icons/delete-icon";
+import EditIcon from "../icons/edit-icon";
+// import { deletePostAction } from "@/actions";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "react-query";
@@ -20,8 +20,8 @@ const EllipsisVertical = ({ id, author }) => {
     mutationKey:["delete-post", id],
     mutationFn: () => {
       const promise = async () => {
-        await fetch(`${process.env.DATABASE_URL}posts/${id}`, {
-          method: "DELETE",
+        await fetch(`${process.env.DATABASE_URL}posts?` + new URLSearchParams ({"postID":id}).toString(), {
+          method: "DELETE"
         });
       }
       return toast.promise(promise, {
@@ -30,7 +30,9 @@ const EllipsisVertical = ({ id, author }) => {
         error: "Failed to delete post",
       })
     },
-    onSuccess: () => queryClient.invalidateQueries(['posts'])
+    onSuccess: () => {
+      queryClient.invalidateQueries(['posts'])
+    }
   })
   const clickHandlerDelete = () => {
     if (session?.data?.user?.name !== author) {

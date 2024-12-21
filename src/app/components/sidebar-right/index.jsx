@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import VideoIcon from "../video-icon";
-import SearchIcon from "../search-icon";
-import EllipsisHorizontal from "../ellipsis-horizontal";
+import VideoIcon from "../icons/video-icon";
+import SearchIcon from "../icons/search-icon";
+import EllipsisHorizontal from "../icons/ellipsis-horizontal";
 import Contact from "../contact";
 import { useQuery } from "react-query";
 import SkeletonContacts from "../skeleton-contacts";
@@ -10,7 +10,7 @@ import SkeletonContacts from "../skeleton-contacts";
 
 const SidebarRight = () => {
   // const data = await getContactsAction();
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError, error } = useQuery({
     queryKey: ["contacts"],
     queryFn: async () => {
       return await fetch(`${process.env.DATABASE_URL}contacts`).then(
@@ -23,8 +23,11 @@ const SidebarRight = () => {
   if (isLoading) {
     return <SkeletonContacts />;
   }
+  if (isError) {
+    throw new Error(error.message)
+  }
   return (
-    <div className={"hidden lg:flex lg:flex-grow lg:flex-col lg:p-2"}>
+    <div className={"hidden lg:flex lg:flex-grow lg:flex-col lg:p-2 mt-6"}>
       <div className={"flex justify-between items-center text-gray-500"}>
         <p className={"text-lg"}>Contacts</p>
         <div className={"flex space-x-2"}>
@@ -35,7 +38,7 @@ const SidebarRight = () => {
       </div>
       <div className={"space-y-2"}>
         {data?.map((item) => (
-          <Contact key={item.id} {...item} />
+          <Contact key={item._id} {...item} />
         ))}
       </div>
     </div>

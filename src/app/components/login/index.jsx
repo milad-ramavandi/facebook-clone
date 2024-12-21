@@ -2,7 +2,7 @@
 import { Button } from "@nextui-org/react";
 import { signIn } from "next-auth/react";
 import React from "react";
-import ArrowRightIn from "../arrow-right-in";
+import ArrowRightIn from "../icons/arrow-right-in";
 
 const Login = () => {
   const clickSignIn = () => signIn();

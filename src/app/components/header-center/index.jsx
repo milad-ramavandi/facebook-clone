@@ -1,9 +1,9 @@
 import React from "react";
-import HomeIcon from "../home-icon";
-import FlagIcon from "../flag-icon";
-import PlayIcon from "../play-icon";
-import ShoppingCartIcon from "../shopping-cart-icon";
-import UserGroupIcon from "../user-group-icon";
+import HomeIcon from "../icons/home-icon";
+import FlagIcon from "../icons/flag-icon";
+import PlayIcon from "../icons/play-icon";
+import ShoppingCartIcon from "../icons/shopping-cart-icon";
+import UserGroupIcon from "../icons/user-group-icon";
 import HeaderIcon from "../header-icon";
 
 const icons = [

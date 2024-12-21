@@ -2,7 +2,7 @@
 import { Input } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
-import SearchIcon from "../search-icon";
+import SearchIcon from "../icons/search-icon";
 
 const HeaderLeft = () => {
   return (
