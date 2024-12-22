@@ -14,6 +14,7 @@ import { useMutation, useQueryClient } from "react-query";
 import { useInView } from "framer-motion";
 import ImageIcon from "../icons/image-icon";
 import FilmIcon from "../icons/film-icon";
+import XCircle from "../icons/x-circle";
 
 const InputBox = () => {
   const { ref, inView } = useInView({
@@ -111,7 +112,11 @@ const InputBox = () => {
   const clickHandleEmoji = (e) => {
     setText((prev) => `${prev}${e.emoji}`);
   };
-
+  const deleteFileClick = () => {
+    setFile(null);
+    setPreview(null)
+  }
+  const clearTextClck = () => setText("")
   return (
     <div className="relative bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium space-y-2 sm:space-y-4">
       <div className="flex items-center space-x-2 sm:space-x-4 sm:p-4">
@@ -125,6 +130,7 @@ const InputBox = () => {
               size="md"
               placeholder={`What's on your mind, ${session?.data?.user?.name}?`}
               autoComplete="off"
+              endContent={<XCircle text={text} onClick={() => clearTextClck()}/>}
             />
             <div className="flex justify-end">
               <Button
@@ -165,6 +171,7 @@ const InputBox = () => {
           )}
         </div>
       )}
+      {file && <div className="flex justify-end"><Button color={"danger"} onClick={deleteFileClick}>Delete file</Button></div>}
       <div className="grid sm:grid-cols-3 border-t-2 pt-2">
         <div className="inputIcon">
           <VideoIcon className="size-6 text-red-500" />

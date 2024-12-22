@@ -27,7 +27,7 @@ const SidebarRight = () => {
     throw new Error(error.message)
   }
   return (
-    <div className={"hidden lg:flex lg:flex-grow lg:flex-col lg:p-2 mt-6"}>
+    <div className={"hidden lg:flex lg:flex-grow lg:flex-col lg:p-2 mt-6 lg:!mr-2"}>
       <div className={"flex justify-between items-center text-gray-500"}>
         <p className={"text-lg"}>Contacts</p>
         <div className={"flex space-x-2"}>
