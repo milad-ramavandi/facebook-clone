@@ -6,15 +6,14 @@ import CameraIcon from "../icons/camera-icon";
 import HappyFaceIcon from "../icons/happy-face-icon";
 import Profile from "../profile";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import EmojiPicker from "emoji-picker-react";
-// import { addPostAction } from "@/actions";
 import { toast } from "react-toastify";
 import { useMutation, useQueryClient } from "react-query";
 import { useInView } from "framer-motion";
 import ImageIcon from "../icons/image-icon";
 import FilmIcon from "../icons/film-icon";
 import XCircle from "../icons/x-circle";
+import PreviewFile from "../preview-file";
 
 const InputBox = () => {
   const { ref, inView } = useInView({
@@ -59,9 +58,9 @@ const InputBox = () => {
       });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries("posts")
-      queryClient.invalidateQueries("stories")
-    }
+      queryClient.invalidateQueries("posts");
+      queryClient.invalidateQueries("stories");
+    },
   });
 
   const clickSendPost = (e) => {
@@ -70,32 +69,13 @@ const InputBox = () => {
       toast.error("Post input should not be empty");
       return;
     }
-    // (
-    //   async () => {
-    //     await addPostAction({
-    //       // id:crypto.randomUUID(),
-    //       message: text,
-    //       author: session?.data?.user?.name,
-    //       email: session?.data?.user?.email,
-    //       image: session?.data?.user?.image,
-    //       uploadFile: file,
-    //       // timestamp: new Date(),
-    //     });
-    //   }
-    // )();
-    // toast.promise(promise, {
-    //   pending: "Add post is pending...",
-    //   success: "Add post successfully",
-    //   error: "Failed to add post",
-    // });
-
     if (file.size > MAX_FILE_SIZE) {
       return toast.error("Max allowed size is 2MB");
     }
     mutate();
     setText("");
     setPreview(null);
-    setFile(null)
+    setFile(null);
   };
   const clickOpenInputFile = () => inputFile.current.click();
   const changeFileToAddPost = (e) => {
@@ -114,9 +94,9 @@ const InputBox = () => {
   };
   const deleteFileClick = () => {
     setFile(null);
-    setPreview(null)
-  }
-  const clearTextClck = () => setText("")
+    setPreview(null);
+  };
+  const clearTextClck = () => setText("");
   return (
     <div className="relative bg-white p-2 rounded-2xl shadow-md text-gray-500 font-medium space-y-2 sm:space-y-4">
       <div className="flex items-center space-x-2 sm:space-x-4 sm:p-4">
@@ -130,7 +110,9 @@ const InputBox = () => {
               size="md"
               placeholder={`What's on your mind, ${session?.data?.user?.name}?`}
               autoComplete="off"
-              endContent={<XCircle text={text} onClick={() => clearTextClck()}/>}
+              endContent={
+                <XCircle text={text} onClick={() => clearTextClck()} />
+              }
             />
             <div className="flex justify-end">
               <Button
@@ -147,31 +129,20 @@ const InputBox = () => {
       </div>
 
       {preview && (
-        <div
+        <PreviewFile
+          file={preview}
+          author={session?.data?.user?.name}
           ref={ref}
-          className="relative w-1/2 h-[300px] mx-auto transition duration-300  hover:brightness-110 hover:scale-105"
-        >
-          {file.type.startsWith("image") ? (
-            <Image
-              src={preview}
-              alt="file"
-              fill
-              className="object-contain object-center rounded-md"
-            />
-          ) : (
-            <video
-              ref={videoRef}
-              src={preview}
-              className="w-full h-full object-cover"
-              controls
-              autoPlay
-              muted
-              loop
-            />
-          )}
+          videoRef={videoRef}
+        />
+      )}
+      {file && (
+        <div className="flex justify-end">
+          <Button color={"danger"} onClick={deleteFileClick}>
+            Delete file
+          </Button>
         </div>
       )}
-      {file && <div className="flex justify-end"><Button color={"danger"} onClick={deleteFileClick}>Delete file</Button></div>}
       <div className="grid sm:grid-cols-3 border-t-2 pt-2">
         <div className="inputIcon">
           <VideoIcon className="size-6 text-red-500" />

@@ -8,46 +8,41 @@ import {
 import React from "react";
 import DeleteIcon from "../icons/delete-icon";
 import EditIcon from "../icons/edit-icon";
-// import { deletePostAction } from "@/actions";
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
 import { useMutation, useQueryClient } from "react-query";
 
-const EllipsisVertical = ({ id, author }) => {
+const DropDownPost = ({ id, author }) => {
   const session = useSession();
-  const queryClient = useQueryClient()
-  const {mutate} = useMutation({
-    mutationKey:["delete-post", id],
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationKey: ["delete-post", id],
     mutationFn: () => {
       const promise = async () => {
-        await fetch(`${process.env.DATABASE_URL}posts?` + new URLSearchParams ({"postID":id}).toString(), {
-          method: "DELETE"
-        });
-      }
+        await fetch(
+          `${process.env.DATABASE_URL}posts?` +
+            new URLSearchParams({ postID: id }).toString(),
+          {
+            method: "DELETE",
+          }
+        );
+      };
       return toast.promise(promise, {
         pending: "Delete post is pending...",
         success: "Delete post successfully",
         error: "Failed to delete post",
-      })
+      });
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['posts'])
-    }
-  })
+      queryClient.invalidateQueries(["posts"]);
+    },
+  });
   const clickHandlerDelete = () => {
     if (session?.data?.user?.name !== author) {
-      toast.error("You can not delete this post")
-      return
+      toast.error("You can not delete this post");
+      return;
     }
-    // const promise = async () => {
-    //   await deletePostAction(id);
-    // };
-    // toast.promise(promise, {
-    //   pending: "Delete post is pending...",
-    //   success: "Delete post successfully",
-    //   error: "Failed to delete post",
-    // });
-    mutate()
+    mutate();
   };
   return (
     <Dropdown>
@@ -91,4 +86,4 @@ const EllipsisVertical = ({ id, author }) => {
   );
 };
 
-export default EllipsisVertical;
+export default DropDownPost;

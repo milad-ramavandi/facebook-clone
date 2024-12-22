@@ -1,11 +1,9 @@
 'use client'
 import { useQuery } from "react-query";
-// import { getPostsFeedAction } from "@/actions";
 import PostFeed from "../post-feed";
 import SkeletonPosts from "../skeleton-posts";
 
 const PostsFeed = () => {
-  // const data = await getPostsFeedAction();
   const {data, isLoading, isError, error} = useQuery({
     queryKey:["posts"],
     queryFn: async () => await fetch(`${process.env.DATABASE_URL}posts`).then((res) =>

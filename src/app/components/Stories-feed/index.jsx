@@ -3,10 +3,8 @@ import React from "react";
 import StoryCard from "../story-card";
 import { useQuery } from "react-query";
 import SkeletonStoriesFeed from "../skeleton-stories-feed";
-// import { getStoriesFeedAction } from "@/actions";
 
 const StoriesFeed = () => {
-  // const data = await getStoriesFeedAction();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["stories"],
     queryFn: async () => {

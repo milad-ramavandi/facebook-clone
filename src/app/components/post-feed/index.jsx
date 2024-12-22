@@ -1,14 +1,14 @@
 "use client";
-import Image from "next/image";
 import React, { useRef } from "react";
 import LikeIcon from "../icons/like-icon";
 import CommentIcon from "../icons/comment-icon";
 import ShareIcon from "../icons/share-icon";
-import EllipsisVertical from "../ellipsis-vertical";
 import TimeAgo from "react-timeago";
 import { Avatar } from "@nextui-org/react";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
+import PreviewFile from "../preview-file";
+import DropDownPost from "../drop-down-post";
 
 const PostFeed = ({ _id, author, image, uploadFile, timestamp, message }) => {
   const { ref, inView } = useInView();
@@ -22,7 +22,6 @@ const PostFeed = ({ _id, author, image, uploadFile, timestamp, message }) => {
       className={
         "flex flex-col bg-white p-2 sm:p-5 shadow-md rounded-t-2xl space-y-4"
       }
-      ref={ref}
     >
       <div className={"flex justify-between items-center"}>
         <div className="flex flex-grow items-center space-x-2">
@@ -34,30 +33,11 @@ const PostFeed = ({ _id, author, image, uploadFile, timestamp, message }) => {
             </p>
           </div>
         </div>
-        <EllipsisVertical id={_id} author={author} />
+        <DropDownPost id={_id} author={author} />
       </div>
       <p>{message}</p>
       {uploadFile && (
-        <div className={"relative h-56 md:h-96"}>
-          {uploadFile.startsWith("data:image") ? (
-            <Image
-              src={uploadFile}
-              fill
-              className={"object-contain"}
-              alt={author}
-            />
-          ) : (
-            <video
-              ref={videoRef}
-              src={uploadFile}
-              className="w-full h-full object-contain"
-              loop
-              autoPlay
-              muted
-              controls
-            />
-          )}
-        </div>
+        <PreviewFile file={uploadFile} author={author} ref={ref} videoRef={videoRef}/>
       )}
       <div className={"grid sm:grid-cols-3 text-gray-400 border-t pt-1"}>
         <div className={"inputIcon"}>

@@ -6,10 +6,9 @@ import EllipsisHorizontal from "../icons/ellipsis-horizontal";
 import Contact from "../contact";
 import { useQuery } from "react-query";
 import SkeletonContacts from "../skeleton-contacts";
-// import { getContactsAction } from "@/actions";
+
 
 const SidebarRight = () => {
-  // const data = await getContactsAction();
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ["contacts"],
     queryFn: async () => {
