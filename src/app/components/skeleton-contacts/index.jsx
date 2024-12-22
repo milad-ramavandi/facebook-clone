@@ -6,7 +6,7 @@ const SkeletonContacts = () => {
   return (
     <div
       className={
-        "hidden lg:flex lg:flex-grow lg:flex-col lg:space-y-3 lg:p-2 bg-default-200 rounded-md h-3/4 mt-6"
+        "hidden lg:flex lg:flex-grow lg:flex-col lg:space-y-3 lg:p-2 bg-default-200 rounded-md h-3/4 mt-6 lg:mr-1"
       }
     >
       <div className={"flex justify-between items-center text-gray-500"}>
